@@ -1,0 +1,68 @@
+<div class="bg-primary p-1 mb-3">
+    <div class="container">
+        <h2 class="text-white">Personagens</h2>
+    </div>
+</div>
+
+<div class="container">
+    <app-busca (messageEvent)="receiveMessage($event)"> </app-busca>
+
+    <div *ngIf="isSearch && loader" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Carregando...</span>
+        </div>
+    </div>
+
+    <p *ngIf="isSearch">Buscando por "{{termo}}"</p>
+
+    <div class="search-results" infinite-scroll (scrolled)="carregarMais()">
+
+        <a class="link-cards" routerLink="/filmes" *ngFor="let personagem of personagens"
+            [state]="{filmes: personagem.films}">
+            <div class="card mb-3">
+                <div class="card-body text-dark">
+
+                    <h5 class="card-title text-center">{{personagem.name}}</h5>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-sm">
+                            <p class="text-center">Height: {{personagem.height}}</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="text-center">Mass: {{personagem.mass}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <p class="text-center">Hair Color: {{personagem.hair_color}}</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="text-center">Skin Color: {{personagem.skin_color}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <p class="text-center">Eye Color: {{personagem.eye_color}}</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="text-center">Birth Year: {{personagem.birth_year}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <p class="text-center">Gender: {{personagem.gender}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div *ngIf="!isSearch && loader" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Carregando...</span>
+        </div>
+    </div>
+</div>

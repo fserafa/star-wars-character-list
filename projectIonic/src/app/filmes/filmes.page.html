@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Filmes</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+<div *ngIf="loader" class="spinner">
+  <ion-spinner padding></ion-spinner>
+</div>
+<ion-content padding>
+  <ion-card *ngFor="let filme of filmes">
+
+    <ion-card-header>
+      <ion-card-title center>{{filme.title}}</ion-card-title>
+    </ion-card-header>
+
+  </ion-card>
+</ion-content> 

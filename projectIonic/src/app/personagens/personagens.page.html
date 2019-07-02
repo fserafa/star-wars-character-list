@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Personagens</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <app-busca (ionChange)="buscar($event)"></app-busca>
+  <div *ngIf="isSearch && loader" class="spinner">
+    <ion-spinner padding></ion-spinner>
+  </div>
+  <ion-item *ngIf="isSearch">Buscando por "{{ termo }}"</ion-item>
+  <ion-card class="card-personagens" *ngFor="let personagem of personagens" (click)="irParaFilmes(personagem.films)">
+
+    <ion-card-header>
+      <ion-card-title>{{personagem.name}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>Height {{personagem.height}}</ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>Mass: {{personagem.mass}}</ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>Hair Color: {{personagem.hair_color}}</ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>Skin Color: {{personagem.skin_color}}</ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>Eye Color: {{personagem.eye_color}}</ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>Birth Year: {{personagem.birth_year}}</ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>Gender: {{personagem.gender}}</ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+  </ion-card>
+  <div *ngIf="!isSearch && loader" class="spinner">
+    <ion-spinner padding></ion-spinner>
+  </div>
+
+  <ion-infinite-scroll threshold="25%" (ionInfinite)="carregarMais($event)">
+    <ion-infinite-scroll-content loadingSpinner="null">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

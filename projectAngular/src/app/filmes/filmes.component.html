@@ -1,0 +1,12 @@
+<div class="bg-primary p-1 mb-3">
+    <div class="container">
+        <h2 class="text-white">Filmes</h2>
+    </div>
+</div>
+<div class="container">
+    <div class="card mb-3" *ngFor="let filme of filmes">
+        <div class="card-body text-dark">
+            <h5 class="card-title text-center">{{filme.title}}</h5>
+        </div>
+    </div>
+</div>

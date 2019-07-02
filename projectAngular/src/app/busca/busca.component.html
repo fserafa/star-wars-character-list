@@ -1,0 +1,7 @@
+<div class="input-group input-group-lg mb-3">
+    <input [(ngModel)]="termo" (ngModelChange)="buscar()" class="form-control" type="text" placeholder="Pesquisar"
+        name="termo">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" (click)="limpar()" type="button">X</button>
+    </div>
+</div>
